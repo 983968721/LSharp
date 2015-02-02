@@ -42,114 +42,114 @@ namespace xSaliceReligionAIO.Champions
         private void LoadMenu()
         {
 
-            var key = new Menu("Key", "Key");
+            var key = new Menu("按 键", "Key");
             {
-                key.AddItem(new MenuItem("ComboActive", "Combo!",true).SetValue(new KeyBind(32, KeyBindType.Press)));
-                key.AddItem(new MenuItem("HarassActive", "Harass!",true).SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("HarassActiveT", "Harass (toggle)!",true).SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
-                key.AddItem(new MenuItem("LaneClearActive", "Farm!",true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("escape", "Escape", true).SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("insec", "Insec Selected target",true).SetValue(new KeyBind("J".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("qeCombo", "Q->E stun Nearest target",true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("qMulti", "Q if 2+ Soilder",true).SetValue(new KeyBind("I".ToCharArray()[0], KeyBindType.Toggle)));
-                key.AddItem(new MenuItem("point", "Escape Point Tag(Delay Escape Only)", true).SetValue(new KeyBind("M".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("ComboActive", "连 招!",true).SetValue(new KeyBind(32, KeyBindType.Press)));
+                key.AddItem(new MenuItem("HarassActive", "骚 扰!",true).SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("HarassActiveT", "骚扰 (自动)!",true).SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
+                key.AddItem(new MenuItem("LaneClearActive", "清线!",true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("escape", "逃脱", true).SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("insec", "R 选择目标",true).SetValue(new KeyBind("J".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("qeCombo", "Q -> E眩晕最近的目标",true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
+                key.AddItem(new MenuItem("qMulti", "两个士兵使用Q",true).SetValue(new KeyBind("I".ToCharArray()[0], KeyBindType.Toggle)));
+                key.AddItem(new MenuItem("point", "逃脱点标签（延迟才逃脱）", true).SetValue(new KeyBind("M".ToCharArray()[0], KeyBindType.Press)));
                 //add to menu
                 menu.AddSubMenu(key);
             }
 
             //Spell Menu
-            var spell = new Menu("Spell", "Spell");
+            var spell = new Menu("技能 设置", "Spell");
             {
 
-                var qMenu = new Menu("QSpell", "QSpell"); { 
-                    qMenu.AddItem(new MenuItem("qOutRange", "Only Use When target out of range",true).SetValue(false));
-                    qMenu.AddItem(new MenuItem("qExtend", "Use Extended Q Range",true).SetValue(true));
-                    qMenu.AddItem(new MenuItem("qHit", "Q HitChance",true).SetValue(new Slider(3, 1, 3)));
+                var qMenu = new Menu("Q 设置", "QSpell"); { 
+                    qMenu.AddItem(new MenuItem("qOutRange", "使用Q|敌人走出沙兵攻击范围",true).SetValue(false));
+                    qMenu.AddItem(new MenuItem("qExtend", "延伸 Q 范围",true).SetValue(true));
+                    qMenu.AddItem(new MenuItem("qHit", "Q 命中的几率",true).SetValue(new Slider(3, 1, 3)));
                     spell.AddSubMenu(qMenu);
                 }
                 //W Menu
-                var wMenu = new Menu("WSpell", "WSpell"); {
-                    wMenu.AddItem(new MenuItem("wAtk", "Always Atk Enemy",true).SetValue(true));
-                    wMenu.AddItem(new MenuItem("wQ", "Use WQ Poke",true).SetValue(true));
+                var wMenu = new Menu("W 设置", "WSpell"); {
+                    wMenu.AddItem(new MenuItem("wAtk", "自动攻击敌人",true).SetValue(true));
+                    wMenu.AddItem(new MenuItem("wQ", "使用 WQ 消耗",true).SetValue(true));
                     spell.AddSubMenu(wMenu);
                 }
                 //E Menu
-                var eMenu =  new Menu("ESpell", "ESpell");
+                var eMenu =  new Menu("E 设置", "ESpell");
                 {
-                    eMenu.AddItem(new MenuItem("eKill", "If Killable Combo",true).SetValue(false));
-                    eMenu.AddItem(new MenuItem("eKnock", "Always Knockup/DMG",true).SetValue(false));
-                    eMenu.AddItem(new MenuItem("eHP", "if HP >",true).SetValue(new Slider(100)));
+                    eMenu.AddItem(new MenuItem("eKill", "突进|敌人走出Q范围",true).SetValue(false));
+                    eMenu.AddItem(new MenuItem("eKnock", "总是击飞敌人",true).SetValue(false));
+                    eMenu.AddItem(new MenuItem("eHP", "使用E|血量大于",true).SetValue(new Slider(100)));
                     spell.AddSubMenu(eMenu);
                 }
                 //R Menu
-                var rMenu = new Menu("RSpell", "RSpell");{
-                    rMenu.AddItem(new MenuItem("rHP", "if HP <",true).SetValue(new Slider(20)));
-                    rMenu.AddItem(new MenuItem("rHit", "If Hit >= Target",true).SetValue(new Slider(3, 0, 5)));
-                    rMenu.AddItem(new MenuItem("rWall", "R Enemy Into Wall",true).SetValue(true));
+                var rMenu = new Menu("R 设置", "RSpell");{
+                    rMenu.AddItem(new MenuItem("rHP", "使用R|血量低于 <",true).SetValue(new Slider(20)));
+                    rMenu.AddItem(new MenuItem("rHit", "使用R|敌人数量",true).SetValue(new Slider(3, 0, 5)));
+                    rMenu.AddItem(new MenuItem("rWall", "将敌人R进墙内",true).SetValue(true));
                     spell.AddSubMenu(rMenu);
                 }
                 menu.AddSubMenu(spell);
             }
 
             //Combo menu:
-            var combo = new Menu("Combo", "Combo");
+            var combo = new Menu("连招", "Combo");
             {
-                combo.AddItem(new MenuItem("UseQCombo", "Use Q",true).SetValue(true));
-                combo.AddItem(new MenuItem("UseWCombo", "Use W",true).SetValue(true));
-                combo.AddItem(new MenuItem("UseECombo", "Use E",true).SetValue(true));
-                combo.AddItem(new MenuItem("UseRCombo", "Use R",true).SetValue(true));
+                combo.AddItem(new MenuItem("UseQCombo", "使用 Q",true).SetValue(true));
+                combo.AddItem(new MenuItem("UseWCombo", "使用 W",true).SetValue(true));
+                combo.AddItem(new MenuItem("UseECombo", "使用 E",true).SetValue(true));
+                combo.AddItem(new MenuItem("UseRCombo", "使用 R",true).SetValue(true));
                 menu.AddSubMenu(combo);
             }
 
             //Harass menu:
-            var harass = new Menu("Harass", "Harass");
+            var harass = new Menu("骚扰", "Harass");
             {
-                harass.AddItem(new MenuItem("UseQHarass", "Use Q",true).SetValue(true));
-                harass.AddItem(new MenuItem("UseWHarass", "Use W",true).SetValue(true));
-                harass.AddItem(new MenuItem("UseEHarass", "Use E",true).SetValue(false));
+                harass.AddItem(new MenuItem("UseQHarass", "使用 Q",true).SetValue(true));
+                harass.AddItem(new MenuItem("UseWHarass", "使用 W",true).SetValue(true));
+                harass.AddItem(new MenuItem("UseEHarass", "使用 E",true).SetValue(false));
                 menu.AddSubMenu(harass);
             }
 
             //killsteal
-            var killSteal = new Menu("KillSteal", "KillSteal");
+            var killSteal = new Menu("抢人头", "KillSteal");
             {
-                killSteal.AddItem(new MenuItem("smartKS", "Use Smart KS System",true).SetValue(true));
-                killSteal.AddItem(new MenuItem("eKS", "Use E KS",true).SetValue(false));
-                killSteal.AddItem(new MenuItem("wqKS", "Use WQ KS",true).SetValue(true));
-                killSteal.AddItem(new MenuItem("qeKS", "Use WQE KS",true).SetValue(false));
-                killSteal.AddItem(new MenuItem("rKS", "Use R KS",true).SetValue(true));
+                killSteal.AddItem(new MenuItem("smartKS", "使用 智能抢人头",true).SetValue(true));
+                killSteal.AddItem(new MenuItem("eKS", "使用 E 抢人头",true).SetValue(false));
+                killSteal.AddItem(new MenuItem("wqKS", "使用 WQ 抢人头",true).SetValue(true));
+                killSteal.AddItem(new MenuItem("qeKS", "使用 WQE 抢人头",true).SetValue(false));
+                killSteal.AddItem(new MenuItem("rKS", "使用 R 抢人头",true).SetValue(true));
                 menu.AddSubMenu(killSteal);
             }
 
             //farm menu
-            var farm = new Menu("Farm", "Farm");
+            var farm = new Menu("清兵", "Farm");
             {
-                farm.AddItem(new MenuItem("UseQFarm", "Use Q",true).SetValue(false));
-                farm.AddItem(new MenuItem("qFarm", "Only Q if > minion",true).SetValue(new Slider(3, 0, 5)));
+                farm.AddItem(new MenuItem("UseQFarm", "使用 Q",true).SetValue(false));
+                farm.AddItem(new MenuItem("qFarm", "使用Q|小兵数量",true).SetValue(new Slider(3, 0, 5)));
                 menu.AddSubMenu(farm);
             }
 
             //Misc Menu:
             var misc = new Menu("Misc", "Misc");
             {
-                misc.AddItem(new MenuItem("UseInt", "Use E to Interrupt",true).SetValue(true));
-                misc.AddItem(new MenuItem("UseGap", "Use R for GapCloser",true).SetValue(true));
-                misc.AddItem(new MenuItem("fastEscape", "Fast Escape = on, Delay EQ Escape = off",true).SetValue(true));
-                misc.AddItem(new MenuItem("escapeDelay", "Escape Delay Decrease", true).SetValue(new Slider(0, 0, 300)));
+                misc.AddItem(new MenuItem("UseInt", "使用 E 打断技能",true).SetValue(true));
+                misc.AddItem(new MenuItem("UseGap", "使用 E 防止突击",true).SetValue(true));
+                misc.AddItem(new MenuItem("fastEscape", "逃离 模式 = 开, 延迟 EQ 模式 = 关",true).SetValue(true));
+                misc.AddItem(new MenuItem("escapeDelay", "逃离 延迟丨减少", true).SetValue(new Slider(0, 0, 300)));
                 menu.AddSubMenu(misc);
             }
 
             //Drawings menu:
-            var draw = new Menu("Drawings", "Drawings"); { 
-                draw.AddItem(new MenuItem("QRange", "Q range",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
-                draw.AddItem(new MenuItem("QExtendRange", "Q Extended range",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
-                draw.AddItem(new MenuItem("WRange", "W range",true).SetValue(new Circle(true, Color.FromArgb(100, 255, 0, 255))));
-                draw.AddItem(new MenuItem("ERange", "E range",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
-                draw.AddItem(new MenuItem("RRange", "R range",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
-                draw.AddItem(new MenuItem("slaveDmg", "Draw Slave AA Needed",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+            var draw = new Menu("范围", "Drawings"); { 
+                draw.AddItem(new MenuItem("QRange", "Q 范围",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+                draw.AddItem(new MenuItem("QExtendRange", "Q 延伸 范围",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+                draw.AddItem(new MenuItem("WRange", "W 范围",true).SetValue(new Circle(true, Color.FromArgb(100, 255, 0, 255))));
+                draw.AddItem(new MenuItem("ERange", "E 范围",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+                draw.AddItem(new MenuItem("RRange", "R 范围",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+                draw.AddItem(new MenuItem("slaveDmg", "显示沙兵攻击范围",true).SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
 
-                MenuItem drawComboDamageMenu = new MenuItem("Draw_ComboDamage", "Draw Combo Damage",true).SetValue(true);
-                MenuItem drawFill = new MenuItem("Draw_Fill", "Draw Combo Damage Fill",true).SetValue(new Circle(true, Color.FromArgb(90, 255, 169, 4)));
+                MenuItem drawComboDamageMenu = new MenuItem("Draw_ComboDamage", "显示组合连招伤害",true).SetValue(true);
+                MenuItem drawFill = new MenuItem("Draw_Fill", "显示组合填充伤害",true).SetValue(new Circle(true, Color.FromArgb(90, 255, 169, 4)));
                 draw.AddItem(drawComboDamageMenu);
                 draw.AddItem(drawFill);
                 DamageIndicator.DamageToUnit = GetComboDamage;
